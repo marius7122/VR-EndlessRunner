@@ -29,8 +29,7 @@ public class ControllersInfoUI : MonoBehaviour
 
         if (alsoDebugInfo)
         {
-            Debug.Log($"LeftSpeed: {leftSpeed}");
-            Debug.Log($"RightSpeed: {rightSpeed}");
+            Debug.Log($"{infoText.text}");
         }
     }
 }

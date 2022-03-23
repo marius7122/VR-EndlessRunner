@@ -34,13 +34,13 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
 
     private void Update()
     {
-        ArmMove();
-        ArmJump();
-        
+        CalculateArmMovement();
+        CalculateArmJump();
+
         MoveRig();
     }
 
-    private void ArmMove()
+    private void CalculateArmMovement()
     {
         var leftSpeed = leftControllerMovement.Speed;
         var rightSpeed = rightControllerMovement.Speed;
@@ -57,14 +57,14 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
             _horizontalSpeed = cameraForward * swingForce;
     }
 
-    private void ArmJump()
+    private void CalculateArmJump()
     {
         var leftAcceleration = leftControllerMovement.Acceleration.y;
         var rightAcceleration = rightControllerMovement.Acceleration.y;
         
         if (leftAcceleration >= individualAccelerationNeededForJump &&
             rightAcceleration >= individualAccelerationNeededForJump &&
-            (leftAcceleration + rightAcceleration) >= accelerationNeededForJump && 
+            leftAcceleration + rightAcceleration >= accelerationNeededForJump && 
             _characterController.isGrounded)
         {
             _verticalSpeed = Vector3.up * jumpPower;
@@ -74,14 +74,14 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
     private void MoveRig()
     {
         // apply gravity
-        if (useGravity && !_characterController.isGrounded)
-            _verticalSpeed += Physics.gravity * Time.deltaTime;
-        else
+        if (useGravity)
         {
-            if(_characterController.isGrounded && _verticalSpeed.y < 0)
-                _verticalSpeed = Vector3.zero;
+            if (!_characterController.isGrounded)
+                _verticalSpeed += Physics.gravity * Time.deltaTime;
+            else
+                _verticalSpeed += Physics.gravity * (Time.deltaTime * 0.1f);    // keep object grounded
         }
-        
+
         // Debug.Log($"Horizontal speed y: {_horizontalSpeed.y}");
         var movement = _verticalSpeed * Time.deltaTime + _horizontalSpeed * Time.deltaTime;
         

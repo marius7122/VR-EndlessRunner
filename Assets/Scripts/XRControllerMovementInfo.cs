@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public abstract class XRControllerMovementInfoBehavior : MonoBehaviour
@@ -10,8 +11,6 @@ public abstract class XRControllerMovementInfoBehavior : MonoBehaviour
 
 public class XRControllerMovementInfo : XRControllerMovementInfoBehavior
 {
-    [SerializeField] public float maxSpeed = 10f;
-    
     public override Vector3 Speed => _speed;
     private Vector3 _speed;
 
@@ -19,7 +18,7 @@ public class XRControllerMovementInfo : XRControllerMovementInfoBehavior
     private Vector3 _acceleration;
 
     private ActionBasedController _controller;
-    private bool _lastPositionIsSet;
+    private bool _controllerIsTracked;
     private Vector3 _lastPosition = Vector3.zero;
     private Vector3 _lastSpeed =  Vector3.zero;
 
@@ -30,8 +29,13 @@ public class XRControllerMovementInfo : XRControllerMovementInfoBehavior
 
     private void Update()
     {
+        UpdateControllerStats();
+    }
+
+    private void UpdateControllerStats()
+    {
         var currentPosition = transform.localPosition;
-        if (_lastPositionIsSet)
+        if (_controllerIsTracked)
         {
             var direction = _lastPosition - currentPosition;
             _speed = direction / Time.deltaTime;
@@ -39,10 +43,20 @@ public class XRControllerMovementInfo : XRControllerMovementInfoBehavior
             var speedDifference = _lastSpeed - _speed;
             _acceleration = speedDifference / Time.deltaTime;
         }
-        
-        _lastPosition = currentPosition;
-        _lastSpeed = _speed;
+        else
+        {
+            _speed = Vector3.zero;
+            _acceleration = Vector3.zero;
+        }
 
-        // Debug.Log($"{name.Split(' ')[0]}: {_controller.currentControllerState.inputTrackingState}");
+        var trackingState = _controller.currentControllerState.inputTrackingState;
+        _controllerIsTracked = trackingState.HasFlag(InputTrackingState.Position);
+        if (_controllerIsTracked)
+        {
+            _lastPosition = currentPosition;
+            _lastSpeed = _speed;
+        }
     }
+    
+    
 }
