@@ -82,7 +82,6 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
                 _verticalSpeed += Physics.gravity * (Time.deltaTime * 0.1f);    // keep object grounded
         }
 
-        // Debug.Log($"Horizontal speed y: {_horizontalSpeed.y}");
         var movement = _verticalSpeed * Time.deltaTime + _horizontalSpeed * Time.deltaTime;
         
         if (CanBeginLocomotion() && BeginLocomotion())
@@ -99,12 +98,18 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
                 Debug.LogWarning($"Horizontal Speed Y is != 0: {_horizontalSpeed.y}");
             }
             
-            // Debug.Log($"Before: {_horizontalSpeed}");
-            if (_horizontalSpeed.magnitude <= 0.5f)
-                _horizontalSpeed = Vector3.zero;
-            else
-                _horizontalSpeed -= _horizontalSpeed.normalized * (groundFriction * Time.deltaTime);
-            // Debug.Log($"After: {_horizontalSpeed}");
+            var stoppingForce = -_horizontalSpeed;
+            var newHorizontalSpeed = _horizontalSpeed + 
+                                     stoppingForce.normalized * (groundFriction * Time.deltaTime) + 
+                                     stoppingForce * (1f * Time.deltaTime);
+        
+            // did we started go backwards?
+            var speedDot = Vector3.Dot(_horizontalSpeed, newHorizontalSpeed);
+            // Debug.Log($"SpeedDot: {speedDot}\nOldSpeed: {_horizontalSpeed}\nNewSpeed: {newHorizontalSpeed}");
+            if (speedDot <= 0f)
+                newHorizontalSpeed = Vector3.zero;
+
+            _horizontalSpeed = newHorizontalSpeed;
         }
     }
     
