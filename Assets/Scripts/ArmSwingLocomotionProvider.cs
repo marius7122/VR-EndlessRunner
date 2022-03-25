@@ -1,14 +1,21 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ArmSwingLocomotionProvider : LocomotionProvider
 {
-    [Header("Customization")] 
-    [SerializeField] private bool useGravity = true;
-    
-    [SerializeField] private float movementSpeed = 3f;
-    [SerializeField] private float groundFriction = 10f;
+    public event Action OnJump;
 
+    [Header("Movement")]
+    [SerializeField] private float movementSpeed = 3f;
+    [SerializeField] private float maxSpeed = 10f;
+    [Tooltip("How much speed the character will loss per second if it's grounded")]
+    [SerializeField] private float constantGroundDecelerationSpeed = 10f;
+    [Tooltip("How much the speed will impact the breaking force")]
+    [SerializeField] private float groundDecelerationFactor = 1f;
+
+    [Header("Jump")]
+    [SerializeField] private bool useGravity = true;
     [SerializeField] private float jumpPower = 8f;
     [SerializeField] private float accelerationNeededForJump = 200f;
     [SerializeField] private float individualAccelerationNeededForJump = 70f;
@@ -52,9 +59,13 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
         var cameraForward = system.xrOrigin.Camera.transform.forward;
         cameraForward.y = 0f;
         cameraForward = cameraForward.normalized;
-            
-        if((cameraForward * swingForce).magnitude > _horizontalSpeed.magnitude)
+
+        if ((cameraForward * swingForce).magnitude > _horizontalSpeed.magnitude)
+        {
             _horizontalSpeed = cameraForward * swingForce;
+            if (_horizontalSpeed.magnitude > maxSpeed)
+                _horizontalSpeed = _horizontalSpeed.normalized * maxSpeed;
+        }
     }
 
     private void CalculateArmJump()
@@ -67,6 +78,7 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
             leftAcceleration + rightAcceleration >= accelerationNeededForJump && 
             _characterController.isGrounded)
         {
+            OnJump?.Invoke();
             _verticalSpeed = Vector3.up * jumpPower;
         }
     }
@@ -100,12 +112,11 @@ public class ArmSwingLocomotionProvider : LocomotionProvider
             
             var stoppingForce = -_horizontalSpeed;
             var newHorizontalSpeed = _horizontalSpeed + 
-                                     stoppingForce.normalized * (groundFriction * Time.deltaTime) + 
-                                     stoppingForce * (1f * Time.deltaTime);
+                                     stoppingForce.normalized * (constantGroundDecelerationSpeed * Time.deltaTime) + 
+                                     stoppingForce * (groundDecelerationFactor * Time.deltaTime);
         
             // did we started go backwards?
             var speedDot = Vector3.Dot(_horizontalSpeed, newHorizontalSpeed);
-            // Debug.Log($"SpeedDot: {speedDot}\nOldSpeed: {_horizontalSpeed}\nNewSpeed: {newHorizontalSpeed}");
             if (speedDot <= 0f)
                 newHorizontalSpeed = Vector3.zero;
 
