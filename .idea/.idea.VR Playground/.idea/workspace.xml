@@ -25,6 +25,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/279e7ec2c0d34a69a576ff0bbe8bae324c200/a1/cd43a017/SelectEnterEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Interactables/XRBaseInteractable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Actions/InputActionProperty.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.core-utils@2.0.0/Runtime/XROrigin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Locomotion/SnapTurn/SnapTurnProviderBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Locomotion/SnapTurn/ActionBasedSnapTurnProvider.cs" root0="SKIP_HIGHLIGHTING" />
@@ -92,6 +93,7 @@
       <workItem from="1648033343557" duration="10892000" />
       <workItem from="1648082830247" duration="4631000" />
       <workItem from="1648205057410" duration="6314000" />
+      <workItem from="1648745965810" duration="5889000" />
     </task>
     <servers />
   </component>

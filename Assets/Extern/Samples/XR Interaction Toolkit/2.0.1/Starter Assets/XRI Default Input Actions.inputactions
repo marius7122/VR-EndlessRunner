@@ -1073,6 +1073,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Locomotion",
+            "id": "add0d1e5-138e-4a35-9951-9e50a57d354c",
+            "actions": [
+                {
+                    "name": "LeftEnable",
+                    "type": "Button",
+                    "id": "3ada4561-f5eb-43ef-b38b-0af2f732424d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightEnable",
+                    "type": "Button",
+                    "id": "0c70448f-3b59-4745-aedf-935ec3bfca18",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5d372c85-9c35-4a19-b9ae-b7eb5d719273",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftEnable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eef7134b-2ad0-4c4e-b086-ffab97565ed1",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightEnable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
