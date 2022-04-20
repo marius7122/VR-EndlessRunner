@@ -17,6 +17,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Controllers/XRControllerState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.openxr@1.3.1/Runtime/OpenXRRuntime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Controllers/ActionBasedController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Interactables/XRGrabInteractable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Controllers/XRBaseController.cs" root0="SKIP_HIGHLIGHTING" />
@@ -51,6 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -93,7 +95,13 @@
       <workItem from="1648033343557" duration="10892000" />
       <workItem from="1648082830247" duration="4631000" />
       <workItem from="1648205057410" duration="6314000" />
-      <workItem from="1648745965810" duration="5889000" />
+      <workItem from="1648745965810" duration="7421000" />
+      <workItem from="1648769141534" duration="5365000" />
+      <workItem from="1648819838133" duration="1226000" />
+      <workItem from="1649689375697" duration="1690000" />
+      <workItem from="1649707648628" duration="2879000" />
+      <workItem from="1649848761727" duration="6028000" />
+      <workItem from="1650491968633" duration="4446000" />
     </task>
     <servers />
   </component>

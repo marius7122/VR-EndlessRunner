@@ -1112,11 +1112,50 @@
                 {
                     "name": "",
                     "id": "eef7134b-2ad0-4c4e-b086-ffab97565ed1",
-                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "RightEnable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "cd56e6a2-b130-42b8-b331-947aa486341e",
+            "actions": [
+                {
+                    "name": "Event",
+                    "type": "Button",
+                    "id": "9cfd2c39-a188-46c5-85ca-65431f12e9b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d8c98c0f-8651-40ea-9789-6e46f1afc7f7",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Event",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54be29fe-17e0-47de-a0af-d7e2fc3d212a",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Event",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
