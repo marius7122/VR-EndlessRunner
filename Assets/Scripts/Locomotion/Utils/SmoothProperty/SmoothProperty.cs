@@ -18,6 +18,7 @@ namespace Locomotion.Utils.SmoothProperty
             _lastValues = new Queue<Vector3>();
             var frameWeightDistribution = new GaussianWeightDistribution(1.5f);
             _frameWeight = frameWeightDistribution.GetWeight(framesToCount);
+
         }
 
         public void AddFrameRecord(Vector3 currentValue)
@@ -28,6 +29,7 @@ namespace Locomotion.Utils.SmoothProperty
 
             SmoothValue = Vector3.zero;
             var frameValues = _lastValues.Reverse().ToArray();
+
             for(int i = 0; i < frameValues.Length; i++)
             {
                 SmoothValue += frameValues[i] * _frameWeight[i];

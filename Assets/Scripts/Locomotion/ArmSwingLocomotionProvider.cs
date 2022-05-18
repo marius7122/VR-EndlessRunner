@@ -32,7 +32,8 @@ namespace Locomotion
         [Header("Dependencies")]
         [SerializeField] private XRControllerMovementInfoBehavior leftControllerMovement;
         [SerializeField] private XRControllerMovementInfoBehavior rightControllerMovement;
-
+        [SerializeField] private FovRestrictorLogic fovRestrictor;
+        
         private CharacterController _characterController;
         private Vector3 _verticalSpeed;
         private Vector3 _horizontalSpeed;
@@ -101,9 +102,15 @@ namespace Locomotion
             if (CanBeginLocomotion() && BeginLocomotion())
             {
                 _characterController.Move(movement);
+
                 EndLocomotion();
             }
             
+            float expectedSpeed = _horizontalSpeed.magnitude;
+            float actualSpeed = _characterController.velocity.magnitude;
+            // if(expectedSpeed > actualSpeed * 0.1f)
+            //     fovRestrictor.RestrictFovBecauseImpact(expectedSpeed - actualSpeed);
+
             ApplyForces();
         }
 
@@ -134,8 +141,16 @@ namespace Locomotion
             if (!_characterController.isGrounded)
                 _verticalSpeed += Physics.gravity * Time.deltaTime;
             else
-                _verticalSpeed += Physics.gravity * (Time.deltaTime * 0.1f);    // keep object grounded
+            {
+                if (_verticalSpeed != Physics.gravity * 0.1f)
+                {
+                    fovRestrictor.RestrictFovBecauseImpact(_verticalSpeed.magnitude);
+                }
+                    
+                _verticalSpeed = Physics.gravity * 0.1f; // keep object grounded
+            }
         }
+        
 
         private void DampenHorizontalSpeed()
         {

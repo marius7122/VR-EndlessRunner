@@ -14,10 +14,12 @@ namespace Locomotion.Utils
     public class XRControllerMovementInfo : XRControllerMovementInfoBehavior
     {
         public override Vector3 Speed => ControllerIsTracked ? _speedSmooth.SmoothValue : Vector3.zero;
-        private readonly SmoothProperty.SmoothProperty _speedSmooth = new SmoothProperty.SmoothProperty(5);
+        private SmoothProperty.SmoothProperty _speedSmooth;
 
         public override Vector3 Acceleration => ControllerIsTracked ? _accelerationSmooth.SmoothValue : Vector3.zero;
-        private readonly SmoothProperty.SmoothProperty _accelerationSmooth = new SmoothProperty.SmoothProperty(5);
+        private SmoothProperty.SmoothProperty _accelerationSmooth;
+
+        [SerializeField] private int framesToCountForSmoothing = 5;
 
 
         private ActionBasedController _controller;
@@ -31,6 +33,9 @@ namespace Locomotion.Utils
         private void Awake()
         {
             _controller = GetComponent<ActionBasedController>();
+
+            _speedSmooth = new SmoothProperty.SmoothProperty(framesToCountForSmoothing);
+            _accelerationSmooth = new SmoothProperty.SmoothProperty(framesToCountForSmoothing);
         }
 
         private void Update()
