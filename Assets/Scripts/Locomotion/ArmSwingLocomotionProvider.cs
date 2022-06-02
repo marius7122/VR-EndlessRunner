@@ -10,6 +10,9 @@ namespace Locomotion
     {
         public event Action OnJump;
 
+        public Vector3 CurrentSpeed => _verticalSpeed + _horizontalSpeed;
+        
+        
         [SerializeField] private InputActionReference leftEnable;
         [SerializeField] private InputActionReference rightEnable;
 
@@ -75,7 +78,7 @@ namespace Locomotion
             var moveSpeedNormalized = Mathf.Clamp01((leftSpeed.magnitude + rightSpeed.magnitude) / handSpeedForMaxSpeed);
             var moveSpeed = moveSpeedNormalized * maxSpeed;
             var moveDirection = ControllersAverageFront();
-            if ((moveDirection * moveSpeed).magnitude > _horizontalSpeed.magnitude)
+            if ((moveDirection * moveSpeed).sqrMagnitude > _horizontalSpeed.sqrMagnitude)
             {
                 _horizontalSpeed = moveDirection * moveSpeed;
             }
@@ -142,11 +145,6 @@ namespace Locomotion
                 _verticalSpeed += Physics.gravity * Time.deltaTime;
             else
             {
-                if (_verticalSpeed != Physics.gravity * 0.1f)
-                {
-                    fovRestrictor.RestrictFovBecauseImpact(_verticalSpeed.magnitude);
-                }
-                    
                 _verticalSpeed = Physics.gravity * 0.1f; // keep object grounded
             }
         }

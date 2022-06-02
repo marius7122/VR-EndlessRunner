@@ -36,6 +36,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/544d8c8e3bcb4d50988e814e6579637ce000/04/1f1b0572/InputTrackingState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Locomotion/Continuous/ActionBasedContinuousMoveProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Locomotion/LocomotionProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3be1a7ff939c43f181c0a10b5a0189ac13c800/0f/d36b9540/WaitForSeconds.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Locomotion/Continuous/ContinuousMoveProviderBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Locomotion/CharacterControllerDriver.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -54,6 +55,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -103,7 +105,11 @@
       <workItem from="1649848761727" duration="6028000" />
       <workItem from="1650491968633" duration="4970000" />
       <workItem from="1650539120089" duration="3376000" />
-      <workItem from="1652833456388" duration="9992000" />
+      <workItem from="1652833456388" duration="10230000" />
+      <workItem from="1653438434882" duration="5537000" />
+      <workItem from="1654037388750" duration="5289000" />
+      <workItem from="1654100199136" duration="7032000" />
+      <workItem from="1654166330591" duration="5455000" />
     </task>
     <servers />
   </component>

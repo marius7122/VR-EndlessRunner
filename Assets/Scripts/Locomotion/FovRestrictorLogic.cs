@@ -1,19 +1,23 @@
 ﻿using System;
+using Locomotion.Utils;
 using UnityEngine;
 
 namespace Locomotion
 {
     public class FovRestrictorLogic : MonoBehaviour
     {
+        [Header("Dependencies")]
         [SerializeField] private FovRestrictor restrictor;
+        [SerializeField] private CharacterController characterController;
+        [SerializeField] private CharacterCollisionDetector collisionDetector;
 
-        [SerializeField] private float minFov = 90f;
+
+        [Header("Customization")]
+        [SerializeField] private float minFov = 80f;
         [SerializeField] private float maxFov = 170f;
-        [SerializeField] private float impactSpeedForMinFov = 5f;
-            
-        private float _targetTime;
-        private float _targetFov;
-        private float _fovChangingRate = 5f;
+        [SerializeField] private float impactSpeedForMinFov = 20f;
+        [SerializeField] private float speedToContractionRatioFactor = 2f;
+        [SerializeField] private float fovGrowingRate = 5f;
         
         private void Awake()
         {
@@ -24,37 +28,45 @@ namespace Locomotion
             }
         }
 
+        private void OnEnable()
+        {
+            collisionDetector.OnImpact += RestrictFovBecauseImpact;
+        }
+
+        private void OnDisable()
+        {
+            collisionDetector.OnImpact -= RestrictFovBecauseImpact;
+        }
+
         private void Update()
         {
             UpdateFov();
         }
 
-        public void RestrictFovBecauseImpact(float impactSpeed)
+        private void RestrictFovBecauseImpact(Vector3 speedLostOnImpact)
         {
-            float impactTargetFov = maxFov - (impactSpeed / impactSpeedForMinFov) * (maxFov - minFov);
+            float impactTargetFov = maxFov - (speedLostOnImpact.magnitude / impactSpeedForMinFov) * (maxFov - minFov);
             impactTargetFov = Mathf.Clamp(impactTargetFov, minFov, maxFov);
-
-            // if (restrictor.CurrentFOV < impactTargetFov || (_targetTime < Time.time && _targetFov < impactTargetFov))
-            //     return;
-
-
-            // SetToFOVInTime(impactTargetFov, 0.15f);
-            restrictor.RestrictFov(impactTargetFov);
+            
+            if(impactTargetFov < restrictor.CurrentFOV)
+                restrictor.RestrictFov(impactTargetFov);
         }
 
         private void UpdateFov()
         {
-            float newFov = restrictor.CurrentFOV + _fovChangingRate * Time.deltaTime;
+            float fovChangeRate;
+            var characterSpeed = characterController.velocity;
+            if (Mathf.Approximately(characterSpeed.y, 0f))
+                fovChangeRate = fovGrowingRate;
+            else
+                fovChangeRate = -(Mathf.Abs(characterSpeed.y) * speedToContractionRatioFactor);
+
+            Debug.Log(fovChangeRate);
+
+            float newFov = restrictor.CurrentFOV + fovChangeRate * Time.deltaTime;
             newFov = Mathf.Clamp(newFov, minFov, maxFov);
             restrictor.RestrictFov(newFov);
         }
         
-        private void SetToFOVInTime(float fov, float time)
-        {
-            _targetTime = Time.time + time;
-            _targetFov = fov;
-            _fovChangingRate = (fov - restrictor.CurrentFOV) / time;
-            restrictor.RestrictFov(fov);
-        }
     }
 }
