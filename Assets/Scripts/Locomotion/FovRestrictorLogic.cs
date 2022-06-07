@@ -61,7 +61,6 @@ namespace Locomotion
             else
                 fovChangeRate = -(Mathf.Abs(characterSpeed.y) * speedToContractionRatioFactor);
 
-            Debug.Log(fovChangeRate);
 
             float newFov = restrictor.CurrentFOV + fovChangeRate * Time.deltaTime;
             newFov = Mathf.Clamp(newFov, minFov, maxFov);

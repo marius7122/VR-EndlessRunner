@@ -23,6 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Controllers/XRBaseController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/XRInteractionEvents.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Devices/TrackedDevice.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377d90b6a60246c8b0fcf7d6e7b8f936568ba0/0e/4e305379/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/279e7ec2c0d34a69a576ff0bbe8bae324c200/a1/cd43a017/SelectEnterEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.1/Runtime/Interaction/Interactables/XRBaseInteractable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Actions/InputActionProperty.cs" root0="SKIP_HIGHLIGHTING" />
@@ -109,7 +110,10 @@
       <workItem from="1653438434882" duration="5537000" />
       <workItem from="1654037388750" duration="5289000" />
       <workItem from="1654100199136" duration="7032000" />
-      <workItem from="1654166330591" duration="5455000" />
+      <workItem from="1654166330591" duration="9272000" />
+      <workItem from="1654257794520" duration="42000" />
+      <workItem from="1654537855686" duration="647000" />
+      <workItem from="1654602946672" duration="7087000" />
     </task>
     <servers />
   </component>

@@ -16,6 +16,11 @@ namespace Enemies.Projectile
             StartCoroutine(ShootProjectilesCoroutine());
         }
 
+        private void Update()
+        {
+            transform.LookAt(projectileTarget.transform.position);
+        }
+
         private IEnumerator ShootProjectilesCoroutine()
         {
             while (true)
@@ -33,7 +38,7 @@ namespace Enemies.Projectile
                     continue;
 
                 var newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                newProjectile.SetTarget(projectileTarget);
+                newProjectile.Init(projectileTarget);
                 newProjectile.SetSpeed(projectileSpeed);
             }
         }
