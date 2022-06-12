@@ -35,8 +35,7 @@ namespace Locomotion
         [Header("Dependencies")]
         [SerializeField] private XRControllerMovementInfoBehavior leftControllerMovement;
         [SerializeField] private XRControllerMovementInfoBehavior rightControllerMovement;
-        [SerializeField] private FovRestrictorLogic fovRestrictor;
-        
+
         private CharacterController _characterController;
         private Vector3 _verticalSpeed;
         private Vector3 _horizontalSpeed;
@@ -53,7 +52,6 @@ namespace Locomotion
             if (_characterController == null)
             {
                 Debug.LogError("[ArmSwingLocomotion] Character controller was not found on XROrigin; TODO: one will be added");
-                // TODO: add a character controller (+ character driver)
             }
         }
     
@@ -72,8 +70,8 @@ namespace Locomotion
         
             var leftSpeed = TrackLeftController ? leftControllerMovement.Speed : Vector3.zero;
             var rightSpeed = TrackRightController ? rightControllerMovement.Speed : Vector3.zero;
-            leftSpeed.y = 0;
-            rightSpeed.y = 0;
+            // leftSpeed.y = 0;
+            // rightSpeed.y = 0;
 
             var moveSpeedNormalized = Mathf.Clamp01((leftSpeed.magnitude + rightSpeed.magnitude) / handSpeedForMaxSpeed);
             var moveSpeed = moveSpeedNormalized * maxSpeed;
@@ -108,11 +106,6 @@ namespace Locomotion
 
                 EndLocomotion();
             }
-            
-            float expectedSpeed = _horizontalSpeed.magnitude;
-            float actualSpeed = _characterController.velocity.magnitude;
-            // if(expectedSpeed > actualSpeed * 0.1f)
-            //     fovRestrictor.RestrictFovBecauseImpact(expectedSpeed - actualSpeed);
 
             ApplyForces();
         }

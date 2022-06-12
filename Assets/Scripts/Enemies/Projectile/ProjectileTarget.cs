@@ -42,10 +42,11 @@ namespace Enemies.Projectile
 
             _lastFramePosition = currentPosition;
         }
+        
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"Collided with: {collision.gameObject.name}");
+            playerWasHitChannel.RaiseEvent();
         }
     }
 }

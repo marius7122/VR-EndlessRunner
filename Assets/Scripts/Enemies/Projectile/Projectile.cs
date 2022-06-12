@@ -9,15 +9,17 @@ namespace Enemies.Projectile
 
         private Vector3 _direction;
         private ProjectileTarget _target;
+        private bool _missedTarget;
         
         private void Update()
         {
             AdjustDirection();
             transform.position += _direction * (speed * Time.deltaTime);
 
-            if (MissedTarget())
+            if (!_missedTarget && MissedTarget())
             {
-                Destroy(gameObject);
+                _missedTarget = true;
+                Destroy(gameObject, 2f);
             }
         }
 
