@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Locomotion.Utils.SmoothProperty
+namespace Locomotion.Utils
 {
     public class SmoothProperty
     {

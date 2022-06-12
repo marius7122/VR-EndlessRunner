@@ -16,23 +16,8 @@ namespace Locomotion
         [SerializeField] private InputActionReference leftEnable;
         [SerializeField] private InputActionReference rightEnable;
 
-        [Header("Movement")]
-        [SerializeField] private float handSpeedForMaxSpeed = 3f;
-        [SerializeField] private float maxSpeed = 10f;
-        [Tooltip("How much speed the character will loss per second if it's grounded")]
-        [SerializeField] private float constantGroundDecelerationSpeed = 10f;
-        [Tooltip("How much the speed will impact the breaking force")]
-        [SerializeField] private float groundDecelerationFactor = 1f;
-        [SerializeField] private bool canMoveInAir;
-
-        [Header("Jump")]
-        [SerializeField] private bool useGravity = true;
-        [SerializeField] private float jumpPower = 8f;
-        [SerializeField] private float accelerationNeededForJump = 200f;
-        [SerializeField] private float individualAccelerationNeededForJump = 70f;
-        [SerializeField] private AnimationCurve landingStoppingFactor;
-    
-        [Header("Dependencies")]
+        [Header("Dependencies")] 
+        [SerializeField] private ArmSwingLocomotionParametersSO parameters;
         [SerializeField] private XRControllerMovementInfoBehavior leftControllerMovement;
         [SerializeField] private XRControllerMovementInfoBehavior rightControllerMovement;
 
@@ -65,17 +50,17 @@ namespace Locomotion
     
         private void CalculateArmMovement()
         {
-            if (!_characterController.isGrounded && !canMoveInAir)
+            if (!_characterController.isGrounded && !parameters.canMoveInAir)
                 return;
         
             var leftSpeed = TrackLeftController ? leftControllerMovement.Speed : Vector3.zero;
             var rightSpeed = TrackRightController ? rightControllerMovement.Speed : Vector3.zero;
-            // leftSpeed.y = 0;
-            // rightSpeed.y = 0;
 
-            var moveSpeedNormalized = Mathf.Clamp01((leftSpeed.magnitude + rightSpeed.magnitude) / handSpeedForMaxSpeed);
-            var moveSpeed = moveSpeedNormalized * maxSpeed;
+            var moveSpeedNormalized = Mathf.Clamp01((leftSpeed.magnitude + rightSpeed.magnitude) / parameters.handSpeedForMaxSpeed);
+            var moveSpeed = moveSpeedNormalized * parameters.maxSpeed;
+            
             var moveDirection = ControllersAverageFront();
+            
             if ((moveDirection * moveSpeed).sqrMagnitude > _horizontalSpeed.sqrMagnitude)
             {
                 _horizontalSpeed = moveDirection * moveSpeed;
@@ -87,13 +72,13 @@ namespace Locomotion
             var leftAcceleration = TrackLeftController ? leftControllerMovement.Acceleration.y : 0f;
             var rightAcceleration = TrackRightController ? rightControllerMovement.Acceleration.y : 0f;
         
-            if (leftAcceleration >= individualAccelerationNeededForJump &&
-                rightAcceleration >= individualAccelerationNeededForJump &&
-                leftAcceleration + rightAcceleration >= accelerationNeededForJump && 
+            if (leftAcceleration >= parameters.individualAccelerationNeededForJump &&
+                rightAcceleration >= parameters.individualAccelerationNeededForJump &&
+                leftAcceleration + rightAcceleration >= parameters.accelerationNeededForJump && 
                 _characterController.isGrounded)
             {
                 OnJump?.Invoke();
-                _verticalSpeed = Vector3.up * jumpPower;
+                _verticalSpeed = Vector3.up * parameters.jumpPower;
             }
         }
 
@@ -112,12 +97,12 @@ namespace Locomotion
 
         private Vector3 ControllersAverageFront()
         {
-            var leftControllerFront = TrackLeftController ? leftControllerMovement.transform.forward : Vector3.zero;
+            var leftControllerFront = leftControllerMovement.Forward;
             leftControllerFront.y = 0f;
-            // controller may point up and not have a big factor in horizontal plane movement
+            // controller may be pointing up and not have a big factor in horizontal plane movement
             leftControllerFront.Normalize();
-        
-            var rightControllerFront = TrackRightController ? rightControllerMovement.transform.forward : Vector3.zero;
+            
+            var rightControllerFront = rightControllerMovement.Forward;
             rightControllerFront.y = 0f;
             rightControllerFront.Normalize();
 
@@ -132,7 +117,7 @@ namespace Locomotion
 
         private void ApplyGravity()
         {
-            if (!useGravity) return;
+            if (!parameters.useGravity) return;
             
             if (!_characterController.isGrounded)
                 _verticalSpeed += Physics.gravity * Time.deltaTime;
@@ -158,10 +143,11 @@ namespace Locomotion
                 }
 
                 var stoppingForce = -_horizontalSpeed;
-                var stoppingSpeed = stoppingForce.normalized * (constantGroundDecelerationSpeed * Time.deltaTime) +
-                                    stoppingForce * (groundDecelerationFactor * Time.deltaTime);
+                var stoppingSpeed = 
+                    stoppingForce.normalized * (parameters.constantGroundDecelerationSpeed * Time.deltaTime) +
+                    stoppingForce * (parameters.groundDecelerationFactor * Time.deltaTime);
 
-                stoppingSpeed += stoppingSpeed * landingStoppingFactor.Evaluate(Time.time - _landingTime);
+                stoppingSpeed += stoppingSpeed * parameters.landingStoppingFactor.Evaluate(Time.time - _landingTime);
 
                 var newHorizontalSpeed = _horizontalSpeed + stoppingSpeed;
 

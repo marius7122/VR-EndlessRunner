@@ -9,15 +9,20 @@ namespace Locomotion.Utils
         public abstract Vector3 Speed { get; }
     
         public abstract Vector3 Acceleration { get; }
+        
+        public abstract Vector3 Forward { get; }
     }
 
     public class XRControllerMovementInfo : XRControllerMovementInfoBehavior
     {
         public override Vector3 Speed => ControllerIsTracked ? _speedSmooth.SmoothValue : Vector3.zero;
-        private SmoothProperty.SmoothProperty _speedSmooth;
+        private SmoothProperty _speedSmooth;
 
         public override Vector3 Acceleration => ControllerIsTracked ? _accelerationSmooth.SmoothValue : Vector3.zero;
-        private SmoothProperty.SmoothProperty _accelerationSmooth;
+        private SmoothProperty _accelerationSmooth;
+
+        public override Vector3 Forward => ControllerIsTracked ? _forwardSmooth.SmoothValue : Vector3.zero;
+        private SmoothProperty _forwardSmooth;
 
         [SerializeField] private int framesToCountForSmoothing = 5;
 
@@ -34,8 +39,9 @@ namespace Locomotion.Utils
         {
             _controller = GetComponent<ActionBasedController>();
 
-            _speedSmooth = new SmoothProperty.SmoothProperty(framesToCountForSmoothing);
-            _accelerationSmooth = new SmoothProperty.SmoothProperty(framesToCountForSmoothing);
+            _speedSmooth = new SmoothProperty(framesToCountForSmoothing);
+            _accelerationSmooth = new SmoothProperty(framesToCountForSmoothing);
+            _forwardSmooth = new SmoothProperty(framesToCountForSmoothing);
         }
 
         private void Update()
@@ -60,6 +66,8 @@ namespace Locomotion.Utils
 
             if (ControllerIsTracked)
             {
+                _forwardSmooth.AddFrameRecord(transform.forward);
+                
                 _lastPosition = currentPosition;
                 _lastPositionIsSet = true;
             }

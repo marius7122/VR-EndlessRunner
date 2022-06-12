@@ -1,6 +1,5 @@
-﻿using System;
-using Events.ScriptableObjects;
-using Locomotion.Utils.SmoothProperty;
+﻿using Events.ScriptableObjects;
+using Locomotion.Utils;
 using UnityEngine;
 
 namespace Enemies.Projectile

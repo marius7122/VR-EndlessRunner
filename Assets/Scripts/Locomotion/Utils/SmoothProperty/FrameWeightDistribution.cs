@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Locomotion.Utils.SmoothProperty
+namespace Locomotion.Utils
 {
     public interface IFrameWeightDistribution
     {

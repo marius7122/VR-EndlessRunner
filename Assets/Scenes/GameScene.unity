@@ -4544,7 +4544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b80443e36b79574dbdc2cb8f28ed5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framesToCountForSmoothing: 1
+  framesToCountForSmoothing: 5
 --- !u!43 &659537797
 Mesh:
   m_ObjectHideFlags: 0
@@ -9187,7 +9187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b80443e36b79574dbdc2cb8f28ed5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framesToCountForSmoothing: 1
+  framesToCountForSmoothing: 5
 --- !u!4 &1901665631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 477244, guid: 75ce498590d12b14b97bb91249eee61b, type: 3}
@@ -10060,42 +10060,9 @@ MonoBehaviour:
   m_System: {fileID: 1212045279}
   leftEnable: {fileID: 7914990059828260433, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rightEnable: {fileID: 9202908480330926582, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  handSpeedForMaxSpeed: 3
-  maxSpeed: 10
-  constantGroundDecelerationSpeed: 10
-  groundDecelerationFactor: 1
-  canMoveInAir: 0
-  useGravity: 1
-  jumpPower: 5
-  accelerationNeededForJump: 0
-  individualAccelerationNeededForJump: 50
-  landingStoppingFactor:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -3.080075
-      outSlope: -3.080075
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.022746418
-    - serializedVersion: 3
-      time: 0.70000005
-      value: 0.008876818
-      inSlope: -0.7283481
-      outSlope: -0.7283481
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07220711
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  parameters: {fileID: 11400000, guid: 1b77c415e3222754e90035a745d33aeb, type: 2}
   leftControllerMovement: {fileID: 633957025}
   rightControllerMovement: {fileID: 1897768626}
-  fovRestrictor: {fileID: 0}
 --- !u!1001 &2039224812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10291,6 +10258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mockSpeed: {x: 1, y: 0, z: 0}
   mockAcceleration: {x: 0, y: 0, z: 0}
+  mockForward: {x: 0, y: 0, z: 0}
 --- !u!1 &2144711222
 GameObject:
   m_ObjectHideFlags: 0
