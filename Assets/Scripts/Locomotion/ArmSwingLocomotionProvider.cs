@@ -10,9 +10,6 @@ namespace Locomotion
     {
         public event Action OnJump;
 
-        public Vector3 CurrentSpeed => _verticalSpeed + _horizontalSpeed;
-        
-        
         [SerializeField] private InputActionReference leftEnable;
         [SerializeField] private InputActionReference rightEnable;
 
@@ -42,13 +39,13 @@ namespace Locomotion
     
         private void Update()
         {
-            CalculateArmMovement();
-            CalculateArmJump();
+            ComputeArmMovement();
+            ComputeArmJump();
 
             MoveRig();
         }
     
-        private void CalculateArmMovement()
+        private void ComputeArmMovement()
         {
             if (!_characterController.isGrounded && !parameters.canMoveInAir)
                 return;
@@ -56,8 +53,10 @@ namespace Locomotion
             var leftSpeed = TrackLeftController ? leftControllerMovement.Speed : Vector3.zero;
             var rightSpeed = TrackRightController ? rightControllerMovement.Speed : Vector3.zero;
 
-            var moveSpeedNormalized = Mathf.Clamp01((leftSpeed.magnitude + rightSpeed.magnitude) / parameters.handSpeedForMaxSpeed);
-            var moveSpeed = moveSpeedNormalized * parameters.maxSpeed;
+            var controllersSpeed = leftSpeed.magnitude + rightSpeed.magnitude;
+            var moveSpeed = controllersSpeed / parameters.handSpeedForMaxSpeed;
+            moveSpeed = Mathf.Clamp01(moveSpeed);
+            moveSpeed *= parameters.maxSpeed;
             
             var moveDirection = ControllersAverageFront();
             
@@ -67,7 +66,7 @@ namespace Locomotion
             }
         }
 
-        private void CalculateArmJump()
+        private void ComputeArmJump()
         {
             var leftAcceleration = TrackLeftController ? leftControllerMovement.Acceleration.y : 0f;
             var rightAcceleration = TrackRightController ? rightControllerMovement.Acceleration.y : 0f;

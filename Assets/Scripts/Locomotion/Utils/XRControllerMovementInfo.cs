@@ -33,6 +33,7 @@ namespace Locomotion.Utils
         private bool _lastPositionIsSet;
 
         private bool ControllerIsTracked =>
+            _controller != null && 
             _controller.currentControllerState.inputTrackingState.HasFlag(InputTrackingState.Position);
     
         private void Awake()

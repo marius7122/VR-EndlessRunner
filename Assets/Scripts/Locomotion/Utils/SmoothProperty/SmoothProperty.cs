@@ -9,7 +9,7 @@ namespace Locomotion.Utils
         private readonly Queue<Vector3> _lastValues;
         private readonly int _framesToCount;
         private readonly float[] _frameWeight;
-    
+
         public Vector3 SmoothValue { get; private set; }
 
         public SmoothProperty(int framesToCount)
@@ -18,12 +18,11 @@ namespace Locomotion.Utils
             _lastValues = new Queue<Vector3>();
             var frameWeightDistribution = new GaussianWeightDistribution(1.5f);
             _frameWeight = frameWeightDistribution.GetWeight(framesToCount);
-
         }
 
-        public void AddFrameRecord(Vector3 currentValue)
+        public void AddFrameRecord(Vector3 frameValue)
         {
-            _lastValues.Enqueue(currentValue);
+            _lastValues.Enqueue(frameValue);
             if (_lastValues.Count > _framesToCount)
                 _lastValues.Dequeue();
 

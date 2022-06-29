@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Enemies.Projectile
         [SerializeField] private float projectileSpeed = 10f;
         [SerializeField] private float shootCooldown = 5f;
         [SerializeField] private float shootingRange = 20f;
+        [SerializeField] private float minimumShootingDistance = 10f;
+        [SerializeField] private bool autoDestroy = true;
 
         private void Start()
         {
@@ -18,7 +21,13 @@ namespace Enemies.Projectile
 
         private void Update()
         {
-            transform.LookAt(projectileTarget.transform.position);
+            if (projectileTarget != null)
+                transform.LookAt(projectileTarget.transform.position);
+        }
+
+        public void SetTarget(ProjectileTarget target)
+        {
+            projectileTarget = target;
         }
 
         private IEnumerator ShootProjectilesCoroutine()
@@ -26,15 +35,18 @@ namespace Enemies.Projectile
             while (true)
             {
                 yield return new WaitForSeconds(shootCooldown);
+
+                if (projectileTarget == null)
+                    continue;
                 
-                if (projectileTarget.IsInFrontOf(transform.position))
+                if (autoDestroy && projectileTarget.IsInFrontOf(transform.position))
                 {
                     Destroy(gameObject);
                     yield break;
                 }
 
-                if (Vector3.SqrMagnitude(projectileTarget.transform.position - transform.position) >
-                    shootingRange * shootingRange)
+                var distance = (projectileTarget.transform.position - transform.position).magnitude;
+                if (distance > shootingRange || distance < minimumShootingDistance)
                     continue;
 
                 var newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);

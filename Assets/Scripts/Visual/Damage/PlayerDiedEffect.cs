@@ -12,7 +12,6 @@ namespace Visual.Damage
             
         private void OnEnable()
         {
-            Debug.Log("Subscribed");
             onPlayerDied.OnEventRaised += PlayerDied;
         }
         private void OnDisable()

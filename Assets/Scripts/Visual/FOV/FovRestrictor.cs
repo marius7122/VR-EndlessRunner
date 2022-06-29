@@ -6,13 +6,13 @@ namespace Visual.FOV
     {
         [SerializeField] private float distanceToCamera = 0.1f;
         [SerializeField] private float fovRadiusToScale = 2f;
-        [SerializeField] private float startingFov = 150f;
+        [SerializeField] private float defaultFov = 170f;
 
         public float CurrentFOV { get; private set; }
         
         private void Start()
         {
-            RestrictFov(startingFov);
+            RestrictFov(defaultFov);
         }
 
         public void RestrictFov(float targetAngle)
@@ -27,7 +27,7 @@ namespace Visual.FOV
         [ContextMenu("UpdateFov")]
         private void UpdateFov()
         {
-            RestrictFov(startingFov);
+            RestrictFov(defaultFov);
         }
     }
 }
