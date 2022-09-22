@@ -16,18 +16,24 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.2/Runtime/Interaction/Interactables/XRGrabInteractable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3be1a7ff939c43f181c0a10b5a0189ac13c800/21/92ccea4e/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.2/Runtime/Interaction/Controllers/ActionBasedController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.openxr@1.3.1/Runtime/OpenXRRuntime.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.2/Runtime/Locomotion/LocomotionProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.2/Runtime/Interaction/Interactors/XRDirectInteractor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Common/Difficulty/DifficultyModifier.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Devices/TrackedDevice.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377d90b6a60246c8b0fcf7d6e7b8f936568ba0/0e/4e305379/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.2/Runtime/Interaction/Interactables/XRBaseInteractable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/279e7ec2c0d34a69a576ff0bbe8bae324c200/a1/cd43a017/SelectEnterEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Actions/InputActionProperty.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.core-utils@2.0.0/Runtime/XROrigin.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.openxr@1.3.1/Runtime/OpenXRRuntime.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@2.0.2/Runtime/Locomotion/LocomotionProvider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Devices/TrackedDevice.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Controls/IntegerControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.2.0/InputSystem/Plugins/XR/GenericXRDevice.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/544d8c8e3bcb4d50988e814e6579637ce000/04/1f1b0572/InputTrackingState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3be1a7ff939c43f181c0a10b5a0189ac13c800/0f/d36b9540/WaitForSeconds.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377d90b6a60246c8b0fcf7d6e7b8f936568ba0/0e/4e305379/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -52,6 +58,14 @@
       <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/Windows\VR Playground.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\cilte\Work\Unity3d\VR Playground\Builds\Windows" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\cilte\Work\Unity3d\VR Playground&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\cilte\Work\Unity3d\VR Playground" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
@@ -121,6 +135,8 @@
       <workItem from="1655486252837" duration="3406000" />
       <workItem from="1656369525227" duration="10496000" />
       <workItem from="1656459234335" duration="13190000" />
+      <workItem from="1656530370743" duration="14437000" />
+      <workItem from="1656571320984" duration="615000" />
     </task>
     <servers />
   </component>

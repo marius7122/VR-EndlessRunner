@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Utils
+namespace Debugging
 {
     public class ConstantSpeed : MonoBehaviour
     {

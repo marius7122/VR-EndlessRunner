@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Visual.FOV.Utils
+namespace Common
 {
     public class CharacterCollisionDetector : MonoBehaviour
     {

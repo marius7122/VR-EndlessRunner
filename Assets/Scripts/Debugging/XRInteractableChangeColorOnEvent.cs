@@ -31,13 +31,14 @@ namespace Debugging
     
         private void OnSelectEnter(SelectEnterEventArgs args)
         {
+            Debug.Log("Selector enter");
             SetColor(selectEnterColor);
         }
 
         private void OnSelectExit(SelectExitEventArgs args)
         {
+            Debug.Log("Selector exit");
             SetColor(selectExitColor);
-
         }
     
         private void SetColor(Color newColor)

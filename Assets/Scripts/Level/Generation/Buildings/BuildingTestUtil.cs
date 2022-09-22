@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Level.Generation
+namespace Level.Generation.Buildings
 {
     [RequireComponent(typeof(Building))]
     public class BuildingTestUtil : MonoBehaviour

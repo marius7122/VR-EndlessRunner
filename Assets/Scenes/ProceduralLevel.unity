@@ -154,6 +154,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &323190381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 228480841337013587, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+  m_PrefabInstance: {fileID: 683363434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &323190382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 228480841337013678, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+  m_PrefabInstance: {fileID: 683363434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323190381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c94ed08e18d984a82ac493e3df627b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &323190386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323190381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a99ee030f8a7a943bdcd6c0dbd7082c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDiedChannel: {fileID: 11400000, guid: 1901dec588587bb47991a0fbc4dbe862, type: 2}
+  collisionDetector: {fileID: 323190382}
+  maximumTolerableImpactSpeed: 10
 --- !u!1 &413849666
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 228480840677729151, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: m_Name
+      value: BlockingScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 228480840800479155, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
       propertyPath: far clip plane
       value: 1500
@@ -369,6 +404,42 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: fovBlocker
+      value: 
+      objectReference: {fileID: 683363436}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: damageColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: damageColor.b
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: damageColor.g
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: damageColor.r
+      value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: afterDamageColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: afterDamageColor.b
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: afterDamageColor.g
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 228480841671414675, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+      propertyPath: afterDamageColor.r
+      value: 0.8396226
+      objectReference: {fileID: 0}
     - target: {fileID: 228480841917044798, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
       propertyPath: impactSpeedForMinFov
       value: 5
@@ -382,6 +453,11 @@ PrefabInstance:
 --- !u!4 &683363435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 228480841337013677, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
+  m_PrefabInstance: {fileID: 683363434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &683363436 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 228480840677729145, guid: cf0797c847a54d84583b9915b8b1f95e, type: 3}
   m_PrefabInstance: {fileID: 683363434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &769709384
@@ -817,6 +893,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1859988866}
   - component: {fileID: 1859988867}
+  - component: {fileID: 1859988868}
+  - component: {fileID: 1859988869}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -856,11 +934,123 @@ MonoBehaviour:
   startBuilding: {fileID: 1139605086}
   player: {fileID: 683363435}
   movement: {fileID: 11400000, guid: 60754d141ed60d2498c18e20869480e4, type: 2}
+  levelDifficulty: {fileID: 11400000, guid: f242b09b37c4f4c4c8a9d0089252cbf4, type: 2}
+  projectileDifficulty: {fileID: 11400000, guid: 04343eda53198e649ab35ed6a6b266ea, type: 2}
   distanceToBuildAhead: 250
   distanceToDestroy: 100
   minLength: 20
   maxLength: 30
   width: 8
-  jumpDifficultyFactor: 0.801
   minGap: 1.5
-  projectileSpawnerChance: 0.1
+--- !u!114 &1859988868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859988865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9785790044004acdaf1835f05669db83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1859988869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859988865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a95b61eb253423290a216c6693ae99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 1859988868}
+  onEasy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1859988867}
+        m_TargetAssemblyTypeName: Level.Generation.ProceduralMapGenerator, Assembly-CSharp
+        m_MethodName: SetLevelDifficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f242b09b37c4f4c4c8a9d0089252cbf4, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Level.Generation.Parameters.LevelDifficultySO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1859988867}
+        m_TargetAssemblyTypeName: Level.Generation.ProceduralMapGenerator, Assembly-CSharp
+        m_MethodName: SetProjectileDifficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 04343eda53198e649ab35ed6a6b266ea, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Enemies.Projectile.ProjectilePropertiesSO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMedium:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1859988867}
+        m_TargetAssemblyTypeName: Level.Generation.ProceduralMapGenerator, Assembly-CSharp
+        m_MethodName: SetLevelDifficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f756ffd3d4e8503408900b12883edfa6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Level.Generation.Parameters.LevelDifficultySO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1859988867}
+        m_TargetAssemblyTypeName: Level.Generation.ProceduralMapGenerator, Assembly-CSharp
+        m_MethodName: SetProjectileDifficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 342714c90d60d9c4e87350dc2dace75d, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Enemies.Projectile.ProjectilePropertiesSO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHard:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1859988867}
+        m_TargetAssemblyTypeName: Level.Generation.ProceduralMapGenerator, Assembly-CSharp
+        m_MethodName: SetLevelDifficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 069f9553e039f654d9303605c57aa518, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Level.Generation.Parameters.LevelDifficultySO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1859988867}
+        m_TargetAssemblyTypeName: Level.Generation.ProceduralMapGenerator, Assembly-CSharp
+        m_MethodName: SetProjectileDifficulty
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 12bcda4dd55f40340a0e0820439b7c98, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Enemies.Projectile.ProjectilePropertiesSO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

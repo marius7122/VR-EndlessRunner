@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Level.Generation
+namespace Level.Generation.Buildings
 {
     public class ReferenceBuilding : MonoBehaviour
     {

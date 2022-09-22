@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using Events.ScriptableObjects;
+using Unity.Rendering.HybridV2;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,8 +9,11 @@ namespace Visual.Damage
     public class PlayerDiedEffect : MonoBehaviour
     {
         [SerializeField] private VoidEventChannelSO onPlayerDied;
-        [SerializeField] private SpriteRenderer redScreen;
-            
+        
+        [SerializeField] private SpriteRenderer fovBlocker;
+        [SerializeField] private Color damageColor;
+        [SerializeField] private Color afterDamageColor;
+
         private void OnEnable()
         {
             onPlayerDied.OnEventRaised += PlayerDied;
@@ -22,10 +26,15 @@ namespace Visual.Damage
         [ContextMenu("PlayerDied")]
         private void PlayerDied()
         {
-            Debug.Log("Player died");
-            redScreen.DOFade(1f, 2f).OnComplete(
-                () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex)
-            );
+            var sequence = DOTween.Sequence();
+
+            sequence.Append(fovBlocker.DOColor(damageColor, 2f));
+            sequence.Append(fovBlocker.DOColor(afterDamageColor, 1.5f));
+            sequence.AppendInterval(1f);
+            sequence.AppendCallback(() =>
+            {
+                SceneManager.LoadScene(0);
+            });
         }
     }
 }

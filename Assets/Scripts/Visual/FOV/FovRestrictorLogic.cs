@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Visual.FOV.Utils;
+﻿using Common;
+using UnityEngine;
 
 namespace Visual.FOV
 {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace Enemies.Projectile
     {
         [SerializeField] private ProjectileTarget projectileTarget;
         [SerializeField] private Projectile projectilePrefab;
-        [SerializeField] private float projectileSpeed = 10f;
+        [SerializeField] private ProjectilePropertiesSO projectileProperties;
         [SerializeField] private float shootCooldown = 5f;
         [SerializeField] private float shootingRange = 20f;
         [SerializeField] private float minimumShootingDistance = 10f;
@@ -22,12 +21,17 @@ namespace Enemies.Projectile
         private void Update()
         {
             if (projectileTarget != null)
-                transform.LookAt(projectileTarget.transform.position);
+                transform.LookAt(projectileTarget.transform);
         }
 
         public void SetTarget(ProjectileTarget target)
         {
             projectileTarget = target;
+        }
+
+        public void SetProjectileProperties(ProjectilePropertiesSO newProperties)
+        {
+            projectileProperties = newProperties;
         }
 
         private IEnumerator ShootProjectilesCoroutine()
@@ -51,7 +55,7 @@ namespace Enemies.Projectile
 
                 var newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                 newProjectile.Init(projectileTarget);
-                newProjectile.SetSpeed(projectileSpeed);
+                newProjectile.SetProperties(projectileProperties);
             }
         }
         

@@ -4,17 +4,16 @@ namespace Enemies.Projectile
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] private float speed = 5f;
-        [SerializeField] private float maxCorrectionAngularSpeed = 5f;
 
         private Vector3 _direction;
+        private ProjectilePropertiesSO _properties;
         private ProjectileTarget _target;
         private bool _missedTarget;
         
         private void Update()
         {
             AdjustDirection();
-            transform.position += _direction * (speed * Time.deltaTime);
+            transform.position += _direction * (_properties.speed * Time.deltaTime);
 
             if (!_missedTarget && MissedTarget())
             {
@@ -31,16 +30,16 @@ namespace Enemies.Projectile
             _direction = DirectionToPoint(targetPosition);
         }
 
-        public void SetSpeed(float newSpeed)
+        public void SetProperties(ProjectilePropertiesSO properties)
         {
-            speed = newSpeed;
+            _properties = properties;
         }
 
         private void AdjustDirection()
         {
             var directionToTarget = ComputeDirectionToHitTarget(_target, out _);
 
-            var maxRadianCorrection = maxCorrectionAngularSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            var maxRadianCorrection = _properties.maxCorrectionAngularSpeed * Mathf.Deg2Rad * Time.deltaTime;
             _direction = Vector3.RotateTowards(_direction, directionToTarget, maxRadianCorrection, 0.0f);
 
             transform.LookAt(transform.position + _direction);
@@ -69,14 +68,14 @@ namespace Enemies.Projectile
             // target faster than projectile => projectile can't follow
             var currentPosition = transform.position;
             var currentTargetPosition = target.transform.position;
-            if (target.Speed.magnitude > speed)
+            if (target.Speed.magnitude > _properties.speed)
             {
                 var closestPoint = FindClosestPointOnTrajectory(target);
-                if (Estimate.TimeToReachPosition(currentPosition, closestPoint, speed) >
+                if (Estimate.TimeToReachPosition(currentPosition, closestPoint, _properties.speed) >
                     Estimate.TimeToReachPosition(currentTargetPosition, closestPoint, target.Speed.magnitude))
                     return float.PositiveInfinity;
 
-                upperBound = Estimate.TimeToReachPosition(currentTargetPosition, closestPoint, speed);
+                upperBound = Estimate.TimeToReachPosition(currentTargetPosition, closestPoint, _properties.speed);
             }
 
             const int maxSteps = 100;
@@ -88,7 +87,7 @@ namespace Enemies.Projectile
                 
                 var targetPosition = Estimate.Position(currentTargetPosition, target.Speed, mid);
                 
-                var projectileSpeedVector = DirectionToPoint(targetPosition) * speed;
+                var projectileSpeedVector = DirectionToPoint(targetPosition) * _properties.speed;
                 var projectilePosition = Estimate.Position(currentPosition, projectileSpeedVector, mid);
 
                 var projectileError = Vector3.Distance(targetPosition, projectilePosition);
@@ -98,7 +97,7 @@ namespace Enemies.Projectile
                     return mid;
 
                 var targetPointDistance = Vector3.Distance(currentPosition, targetPosition);
-                var traveledDistance = speed * mid;
+                var traveledDistance = _properties.speed * mid;
                 
                 // not enough time to hit the target
                 if (traveledDistance < targetPointDistance)
@@ -111,7 +110,7 @@ namespace Enemies.Projectile
                 currentStep++;
                 if (currentStep == maxSteps)
                 {
-                    Debug.LogWarning($"Steps = {maxSteps}; lb = {lowerBound}; ub = {upperBound}");
+                    // Debug.LogWarning($"Steps = {maxSteps}; lb = {lowerBound}; ub = {upperBound}");
                     return float.PositiveInfinity;
                 }
             }

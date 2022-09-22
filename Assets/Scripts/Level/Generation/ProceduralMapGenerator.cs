@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using Enemies.Projectile;
+using Level.Generation.Buildings;
+using Level.Generation.Parameters;
 using UnityEngine;
-using UnityEngine.XR.OpenXR.Features;
 
 namespace Level.Generation
 {
@@ -13,7 +13,9 @@ namespace Level.Generation
         [SerializeField] private ProjectileSpawner projectileSpawnerPrefab;
         [SerializeField] private Building startBuilding;
         [SerializeField] private Transform player;
-        [SerializeField] private MovementParameters movement;
+        [SerializeField] private PlayerMovementParameters movement;
+        [SerializeField] private LevelDifficultySO levelDifficulty;
+        [SerializeField] private ProjectilePropertiesSO projectileDifficulty;
         
         [Header("Customization")]
         [SerializeField] private float distanceToBuildAhead = 250f;
@@ -21,13 +23,10 @@ namespace Level.Generation
         [SerializeField] private float minLength = 10f;
         [SerializeField] private float maxLength = 20f;
         [SerializeField] private float width = 6f;
-        [SerializeField] [Range(0f, 1f)] private float jumpDifficultyFactor = 0.8f;
         [SerializeField] private float minGap = 1.5f;
-        [SerializeField] private float projectileSpawnerChance = 0.1f;
         
 
         private LinkedList<Building> _instantiatedBuildings;
-        private LinkedList<ReferenceBuilding> _instantiatedReferenceBuildings;
         private LinkedList<ProjectileSpawner> _instantiatedSpawners;
         private ProjectileTarget _projectileTarget;
 
@@ -35,7 +34,6 @@ namespace Level.Generation
         {
             _instantiatedBuildings = new LinkedList<Building>();
             _instantiatedBuildings.AddFirst(startBuilding);
-            _instantiatedReferenceBuildings = new LinkedList<ReferenceBuilding>();
             _instantiatedSpawners = new LinkedList<ProjectileSpawner>();
 
             _projectileTarget = player.GetComponentInChildren<ProjectileTarget>();
@@ -49,6 +47,17 @@ namespace Level.Generation
         {
             UpdateBuildings();
         }
+
+        public void SetLevelDifficulty(LevelDifficultySO difficulty)
+        {
+            levelDifficulty = difficulty;
+        }
+
+        public void SetProjectileDifficulty(ProjectilePropertiesSO difficulty)
+        {
+            projectileDifficulty = difficulty;
+        }
+        
 
         private void UpdateBuildings()
         {
@@ -67,7 +76,7 @@ namespace Level.Generation
                 lastBuilding = InstantiateRandomBuildingAfter(lastBuilding);
                 _instantiatedBuildings.AddLast(lastBuilding);
 
-                if (_projectileTarget != null && Random.value <= projectileSpawnerChance)
+                if (_projectileTarget != null && Random.value <= levelDifficulty.projectileSpawnerChance)
                 {
                     var newSpawner = InstantiateProjectileSpawnerAbove(lastBuilding);
                     _instantiatedSpawners.AddLast(newSpawner);
@@ -79,10 +88,10 @@ namespace Level.Generation
         {
             var length = Random.Range(minLength, maxLength);
 
-            var gap = Random.Range(minGap, movement.MaxJumpDistance() * jumpDifficultyFactor);
+            var gap = Random.Range(minGap, movement.MaxJumpDistance() * levelDifficulty.jumpDifficultyFactor);
 
             var maxHeightDifference = movement.MaxHeightDifference(gap);
-            var heightDifference = Random.Range(-maxHeightDifference, maxHeightDifference * jumpDifficultyFactor);
+            var heightDifference = Random.Range(-maxHeightDifference, maxHeightDifference * levelDifficulty.jumpDifficultyFactor);
             var height = lastBuilding.Size.y + heightDifference;
 
             var newBuilding = Instantiate(buildingPrefab, transform);
@@ -98,6 +107,7 @@ namespace Level.Generation
         {
             var newProjectileSpawner = Instantiate(projectileSpawnerPrefab, building.transform, true);
             newProjectileSpawner.SetTarget(_projectileTarget);
+            newProjectileSpawner.SetProjectileProperties(projectileDifficulty);
 
             var buildingMidAndAbove = building.transform.position +
                               Vector3.up * (building.Size.y + 20f) +

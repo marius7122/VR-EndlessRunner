@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ebe55c8fe897e44bf6a3e3debe8a5a, type: 3}
-  m_Name: PlayerWasHit
+  m_Name: PlayerDied
   m_EditorClassIdentifier: 
