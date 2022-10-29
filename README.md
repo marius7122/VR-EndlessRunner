@@ -1,5 +1,5 @@
 # VR Endless Runner 
-![](images/Screnshot.png)
+![](images/Screenshot.png)
 
 Welcome! This is the repository for my master's degree final project. Here you can find a VR endless runner. The main purpose of this is to explore some specific mechanics that games can use to create an immersive, motion-sickness-free experience: locomotion through hand movements and narrowing of the visual field dynamically on impact.
 
